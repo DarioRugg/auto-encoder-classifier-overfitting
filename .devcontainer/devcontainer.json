@@ -1,0 +1,29 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.241.1/containers/docker-existing-dockerfile
+{
+	"name": "DeepMicro main container",
+
+	"image": "rugg/deepmicro:dev",
+
+	"runArgs": ["--name=rugg-deepmicro-main", "--gpus", "all"],
+
+	"workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/DeepMicro,type=bind",
+	"workspaceFolder": "/workspaces/DeepMicro",
+			   
+	"mounts": [{"source": "/srv/nfs-data/ruggeri/datasets/IBD/", "target": "/workspaces/DeepMicro/data/", "type": "bind"},
+			   {"source": "/home/ruggeri/keys_for_container/", "target": "/home/ruggeri/.ssh/", "type": "bind"},
+			   {"source": "/var/run/docker.sock", "target": "/var/run/docker.sock", "type": "bind"}],
+
+	"customizations":{
+		"vscode":{
+			"extensions": ["donjayamanne.python-extension-pack",
+						   "christian-kohler.path-intellisense", 
+						   "ms-toolsai.jupyter",
+						   "github.copilot",
+						   "mhutchie.git-graph", 
+						   "grapecity.gc-excelviewer", 
+						   "mechatroner.rainbow-csv",
+						   "ms-azuretools.vscode-docker"]
+		}
+	}
+}
